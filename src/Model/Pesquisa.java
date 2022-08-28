@@ -6,6 +6,7 @@ public class Pesquisa {
 	private int idPesquisa;
 	private String institutoPesquisa;
 	private LocalDate datetime;
+	private int mediaIdade;
 	
 	public Pesquisa(int idPesquisa, String institutoPesquisa, LocalDate datetime) {
 		this.idPesquisa = idPesquisa;
