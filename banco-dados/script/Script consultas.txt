@@ -1,0 +1,7 @@
+-- Consultas --
+
+SELECT * FROM candidato
+SELECT * FROM `tipo pesquisa`
+SELECT * FROM pesquisa
+SELECT * FROM `candidato x pesquisa`
+

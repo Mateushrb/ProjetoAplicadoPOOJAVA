@@ -1,0 +1,94 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema Eleicao
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema Eleicao
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `Eleicao` DEFAULT CHARACTER SET utf8 ;
+USE `Eleicao` ;
+
+-- -----------------------------------------------------
+-- Table `Eleicao`.`Candidato`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Eleicao`.`Candidato` (
+  `ID_CANDIDATO` INT NOT NULL,
+  `Nome` VARCHAR(45) NOT NULL,
+  `Partido` VARCHAR(45) NOT NULL,
+  `Ficha limpa` VARCHAR(45) NULL,
+  UNIQUE INDEX `ID_UNIQUE` (`ID_CANDIDATO` ASC),
+  PRIMARY KEY (`ID_CANDIDATO`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Eleicao`.`Tipo pesquisa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Eleicao`.`Tipo pesquisa` (
+  `ID_TIPO` INT NOT NULL,
+  `Descricao` VARCHAR(200) NULL,
+  PRIMARY KEY (`ID_TIPO`),
+  UNIQUE INDEX `ID_UNIQUE` (`ID_TIPO` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Eleicao`.`Pesquisa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Eleicao`.`Pesquisa` (
+  `ID_PESQUISA` INT NOT NULL,
+  `Instituto` VARCHAR(45) NOT NULL,
+  `Data` DATE NOT NULL,
+  `Local` VARCHAR(45) NOT NULL,
+  `Media idade` FLOAT NOT NULL,
+  `Tipo` VARCHAR(45) NOT NULL,
+  `Formato` VARCHAR(45) NOT NULL,
+  `Tipo pesquisa_ID` INT NOT NULL,
+  UNIQUE INDEX `ID_UNIQUE` (`ID_PESQUISA` ASC),
+  INDEX `fk_Pesquisa_Tipo pesquisa1_idx` (`Tipo pesquisa_ID` ASC),
+  PRIMARY KEY (`ID_PESQUISA`),
+  CONSTRAINT `fk_Pesquisa_Tipo pesquisa1`
+    FOREIGN KEY (`Tipo pesquisa_ID`)
+    REFERENCES `Eleicao`.`Tipo pesquisa` (`ID_TIPO`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `Eleicao`.`Candidato x Pesquisa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Eleicao`.`Candidato x Pesquisa` (
+  `ID_CAND_PESQ` INT NOT NULL,
+  `Candidato` INT NOT NULL,
+  `Pesquisa` INT NOT NULL,
+  `Votos` INT NOT NULL,
+  `Pesquisa_ID_PESQUISA` INT NOT NULL,
+  `Candidato_ID_CANDIDATO` INT NOT NULL,
+  PRIMARY KEY (`ID_CAND_PESQ`),
+  UNIQUE INDEX `ID_UNIQUE` (`ID_CAND_PESQ` ASC),
+  INDEX `fk_Candidato x Pesquisa_Pesquisa1_idx` (`Pesquisa_ID_PESQUISA` ASC),
+  INDEX `fk_Candidato x Pesquisa_Candidato1_idx` (`Candidato_ID_CANDIDATO` ASC),
+  CONSTRAINT `fk_Candidato x Pesquisa_Pesquisa1`
+    FOREIGN KEY (`Pesquisa_ID_PESQUISA`)
+    REFERENCES `Eleicao`.`Pesquisa` (`ID_PESQUISA`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Candidato x Pesquisa_Candidato1`
+    FOREIGN KEY (`Candidato_ID_CANDIDATO`)
+    REFERENCES `Eleicao`.`Candidato` (`ID_CANDIDATO`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
