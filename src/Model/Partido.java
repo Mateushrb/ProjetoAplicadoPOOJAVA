@@ -32,5 +32,9 @@ public class Partido {
 		this.nomePartido = nomePartido;
 	}
 	
+	@Override
+	public String toString() {
+		return sigla + ": " + nomePartido;
+	}
 	
 }

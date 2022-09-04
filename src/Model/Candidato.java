@@ -41,5 +41,8 @@ public class Candidato {
 		this.partido = partido;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return nome + " - " + partido.getSigla();
+	}
 }

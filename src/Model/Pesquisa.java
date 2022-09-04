@@ -5,13 +5,13 @@ import java.time.LocalDate;
 public class Pesquisa {
 	private int idPesquisa;
 	private String institutoPesquisa;
-	private LocalDate datetime;
+	private LocalDate dateTime;
 	private int mediaIdade;
 	
-	public Pesquisa(int idPesquisa, String institutoPesquisa, LocalDate datetime) {
+	public Pesquisa(int idPesquisa, String institutoPesquisa, LocalDate dateTime) {
 		this.idPesquisa = idPesquisa;
 		this.institutoPesquisa = institutoPesquisa;
-		this.datetime = datetime;
+		this.dateTime = dateTime;
 	}
 
 	public int getIdPesquisa() {
@@ -28,12 +28,15 @@ public class Pesquisa {
 		this.institutoPesquisa = institutoPesquisa;
 	}
 
-	public LocalDate getDatetime() {
-		return datetime;
+	public LocalDate getDateTime() {
+		return dateTime;
 	}
 	public void setDatetime(LocalDate datetime) {
-		this.datetime = datetime;
+		this.dateTime = datetime;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Pesquisa do " + institutoPesquisa + " feita em " + dateTime;
+	}
 }
