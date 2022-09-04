@@ -12,7 +12,7 @@
 
 [✅] Classes das entidades principais.
 
-[ ] Classes com as regras de negócio.
+[✅] Classes com as regras de negócio.
 
 [ ] Código completo da aplicação contemplando todos os requisitos.
 
