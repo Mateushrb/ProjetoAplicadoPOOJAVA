@@ -13,6 +13,8 @@ public class Pesquisa {
 		this.institutoPesquisa = institutoPesquisa;
 		this.dateTime = dateTime;
 	}
+	
+	public Pesquisa() {}
 
 	public int getIdPesquisa() {
 		return idPesquisa;
@@ -35,6 +37,13 @@ public class Pesquisa {
 		this.dateTime = datetime;
 	}
 	
+	public int getMediaIdade() {
+		return mediaIdade;
+	}
+	public void setMediaIdade(int mediaIdade) {
+		this.mediaIdade = mediaIdade;
+	}
+
 	@Override
 	public String toString() {
 		return "Pesquisa do " + institutoPesquisa + " feita em " + dateTime;

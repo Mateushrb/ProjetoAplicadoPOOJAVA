@@ -1,10 +1,12 @@
-package Model;
-
 import java.time.LocalDate;
 
 import Controller.CandidatoController;
 import Controller.PartidoController;
 import Controller.PesquisaController;
+import Model.Candidato;
+import Model.CandidatoXPesquisa;
+import Model.Partido;
+import Model.Pesquisa;
 
 public class Principal {
 

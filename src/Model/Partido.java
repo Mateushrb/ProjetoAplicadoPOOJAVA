@@ -10,6 +10,8 @@ public class Partido {
 		this.sigla = sigla;
 		this.nomePartido = nomePartido;
 	}
+	
+	public Partido() {}
 
 	public int getIdPartido() {
 		return idPartido;

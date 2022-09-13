@@ -13,6 +13,8 @@ public class Candidato {
 		this.nome = nome;
 	}
 	
+	public Candidato() {}
+	
 	public int getIdCandidato() {
 		return idCandidato;
 	}
