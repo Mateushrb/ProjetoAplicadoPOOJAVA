@@ -62,8 +62,10 @@ public class CadastroCandidatosUI extends JInternalFrame {
 					candidato.setFichaLimpa(txtFichaLimpa.getText());
 					
 					new CandidatoController().salvar(candidato);
+					JOptionPane.showMessageDialog(null,  "Candidato salvo com sucesso!");
+					dispose();
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null,  "Erro ao salvar candidato");
+					JOptionPane.showMessageDialog(null,  "Erro ao salvar candidato!");
 				}
 			}
 		});
@@ -92,7 +94,7 @@ public class CadastroCandidatosUI extends JInternalFrame {
 					.addContainerGap(344, Short.MAX_VALUE))
 		);
 		
-		JLabel jlNome = new JLabel("Nome:");
+		JLabel jlNomeCandidato = new JLabel("Nome:");
 		
 		txtNome = new JTextField();
 		txtNome.setColumns(10);
@@ -107,7 +109,7 @@ public class CadastroCandidatosUI extends JInternalFrame {
 				.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
 					.addGroup(gl_jpCadastroCandidatos.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
-							.addComponent(jlNome)
+							.addComponent(jlNomeCandidato)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 311, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
@@ -120,7 +122,7 @@ public class CadastroCandidatosUI extends JInternalFrame {
 			gl_jpCadastroCandidatos.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
 					.addGroup(gl_jpCadastroCandidatos.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jlNome)
+						.addComponent(jlNomeCandidato)
 						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_jpCadastroCandidatos.createParallelGroup(Alignment.BASELINE)

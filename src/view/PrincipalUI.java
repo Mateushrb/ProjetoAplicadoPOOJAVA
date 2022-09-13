@@ -51,14 +51,21 @@ public class PrincipalUI extends JFrame {
 		JMenuItem jmiCandidatos = new JMenuItem("Candidatos");
 		jmiCandidatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			CadastroCandidatosUI cadProduto = new CadastroCandidatosUI();
-			cadProduto.setVisible(true);
-			contentPane.add(cadProduto, 0);
+				CadastroCandidatosUI cadCandidato = new CadastroCandidatosUI();
+				cadCandidato.setVisible(true);
+				contentPane.add(cadCandidato, 0);
 			}
 		});
 		jmCadastros.add(jmiCandidatos);
 		
 		JMenuItem jmiPartidos = new JMenuItem("Partidos");
+		jmiPartidos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CadastroPartidosUI cadPartido = new CadastroPartidosUI();
+				cadPartido.setVisible(true);
+				contentPane.add(cadPartido, 0);
+			}
+		});
 		jmCadastros.add(jmiPartidos);
 		
 		JMenuItem jmiPesquisa = new JMenuItem("Pesquisa");
