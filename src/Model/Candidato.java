@@ -39,12 +39,17 @@ public class Candidato {
 	public Partido getPartido() {
 		return partido;
 	}
-	public void setPartido(Partido partido) {
-		this.partido = partido;
+	public void setPartido(Partido string) {
+		this.partido = string;
 	}
 	
 	@Override
 	public String toString() {
 		return nome + " - " + partido.getSigla();
+	}
+
+	public void setPartido(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 }
