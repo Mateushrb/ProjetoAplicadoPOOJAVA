@@ -31,10 +31,12 @@ public class CandidatoDao {
 	
 	public void salvar(Candidato candidato) {
 		try {
-			String sql = "INSERT INTO cliente (fichalimpa, nome) VALUES (?, ?)";
+			String sql = "INSERT INTO candidato (idcandidato, fichalimpa, nome, partido_idpartido) VALUES (?, ?, ?, ?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, candidato.getFichaLimpa());
-			pstmt.setString(2, candidato.getNome());
+			pstmt.setInt(1, candidato.getIdCandidato());
+			pstmt.setString(2, candidato.getFichaLimpa());
+			pstmt.setString(3, candidato.getNome());
+			pstmt.setInt(4, candidato.getPartido().getIdPartido());
 			pstmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

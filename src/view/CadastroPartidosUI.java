@@ -21,6 +21,7 @@ import Model.Partido;
 public class CadastroPartidosUI extends JInternalFrame {
 	private JTextField txtSiglaPartido;
 	private JTextField txtNomePartido;
+	private JTextField txtIdPartido;
 
 	/**
 	 * Launch the application.
@@ -44,7 +45,7 @@ public class CadastroPartidosUI extends JInternalFrame {
 	public CadastroPartidosUI() {
 		setClosable(true);
 		setTitle("Cadastro de partidos");
-		setBounds(100, 100, 450, 200);
+		setBounds(100, 100, 450, 222);
 		
 		JPanel jpCadastroPartidos = new JPanel();
 		jpCadastroPartidos.setBorder(new TitledBorder(null, "Partido", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -56,6 +57,7 @@ public class CadastroPartidosUI extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Partido partido = new Partido();
+					partido.setIdPartido(Integer.parseInt(txtIdPartido.getText()));
 					partido.setSigla(txtSiglaPartido.getText());
 					partido.setNomePartido(txtNomePartido.getText());
 					
@@ -69,8 +71,8 @@ public class CadastroPartidosUI extends JInternalFrame {
 		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(jpCadastroPartidos, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
@@ -81,11 +83,11 @@ public class CadastroPartidosUI extends JInternalFrame {
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(jpCadastroPartidos, GroupLayout.PREFERRED_SIZE, 114, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+					.addComponent(jpCadastroPartidos, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnSalvar))
@@ -101,11 +103,20 @@ public class CadastroPartidosUI extends JInternalFrame {
 		
 		txtNomePartido = new JTextField();
 		txtNomePartido.setColumns(10);
+		
+		JLabel jlIdPartido = new JLabel("ID partido");
+		
+		txtIdPartido = new JTextField();
+		txtIdPartido.setColumns(10);
 		GroupLayout gl_jpCadastroPartidos = new GroupLayout(jpCadastroPartidos);
 		gl_jpCadastroPartidos.setHorizontalGroup(
 			gl_jpCadastroPartidos.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jpCadastroPartidos.createSequentialGroup()
 					.addGroup(gl_jpCadastroPartidos.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_jpCadastroPartidos.createSequentialGroup()
+							.addComponent(jlIdPartido)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(txtIdPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_jpCadastroPartidos.createSequentialGroup()
 							.addComponent(jlSiglaPartido)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -121,13 +132,17 @@ public class CadastroPartidosUI extends JInternalFrame {
 				.addGroup(gl_jpCadastroPartidos.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_jpCadastroPartidos.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jlIdPartido)
+						.addComponent(txtIdPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_jpCadastroPartidos.createParallelGroup(Alignment.BASELINE)
 						.addComponent(jlSiglaPartido)
 						.addComponent(txtSiglaPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_jpCadastroPartidos.createParallelGroup(Alignment.BASELINE)
 						.addComponent(jlNomePartido)
 						.addComponent(txtNomePartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(92, Short.MAX_VALUE))
+					.addContainerGap(111, Short.MAX_VALUE))
 		);
 		jpCadastroPartidos.setLayout(gl_jpCadastroPartidos);
 		getContentPane().setLayout(groupLayout);

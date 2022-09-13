@@ -30,10 +30,11 @@ public class PartidoDao {
 	
 	public void salvar(Partido partido) {
 		try {
-			String sql = "INSERT INTO partido (sigla, nomepartido) VALUES (?, ?)";
+			String sql = "INSERT INTO partido (idpartido, sigla, nomepartido) VALUES (?, ?, ?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, partido.getSigla());
-			pstmt.setString(2, partido.getNomePartido());
+			pstmt.setInt(1, partido.getIdPartido());
+			pstmt.setString(2, partido.getSigla());
+			pstmt.setString(3, partido.getNomePartido());
 			pstmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
