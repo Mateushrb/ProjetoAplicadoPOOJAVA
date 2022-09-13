@@ -39,8 +39,8 @@ public class Candidato {
 	public Partido getPartido() {
 		return partido;
 	}
-	public void setPartido(Partido string) {
-		this.partido = string;
+	public void setPartido(Partido partido) {
+		this.partido = partido;
 	}
 	
 	@Override
@@ -48,8 +48,5 @@ public class Candidato {
 		return nome + " - " + partido.getSigla();
 	}
 
-	public void setPartido(String string) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }

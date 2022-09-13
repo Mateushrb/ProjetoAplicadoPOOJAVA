@@ -26,12 +26,13 @@ public class Principal {
 		CandidatoXPesquisa cand1 = new CandidatoXPesquisa(71826, pesquisa1IBGE, Lula);
 		CandidatoXPesquisa cand2 = new CandidatoXPesquisa(74125, pesquisa1IBGE, Bolsonaro);
 		
-		System.out.println(cand1.toString());
-		System.out.println(cand2.toString());
+		//System.out.println(cand1.toString());
+		//System.out.println(cand2.toString());
 		
 		PartidoController partidoController = new PartidoController();
 		CandidatoController candidatoController = new CandidatoController();
 		PesquisaController pesquisaController = new PesquisaController();
+		/*
 		try {
 			partidoController.salvar(Esquerda);
 			partidoController.salvar(Direita);
@@ -41,6 +42,7 @@ public class Principal {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		*/
 		
 		for (Partido p : partidoController.listar()) {
 			System.out.println(p.toString());
