@@ -18,6 +18,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Controller.PesquisaController;
 import Model.Pesquisa;
+import javax.swing.ImageIcon;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class CadastroPesquisaUI extends JInternalFrame {
 	private JTextField txtIdPesquisa;
@@ -49,10 +52,13 @@ public class CadastroPesquisaUI extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public CadastroPesquisaUI() {
+		getContentPane().setBackground(SystemColor.control);
+		setTitle("Cadastro de Pesquisa");
 		setClosable(true);
 		setBounds(100, 100, 670, 226);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Fechar");
+		btnCancelar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\fechar.png"));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			dispose();
@@ -60,6 +66,7 @@ public class CadastroPesquisaUI extends JInternalFrame {
 		});
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\salvar.png"));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -88,19 +95,21 @@ public class CadastroPesquisaUI extends JInternalFrame {
 		});
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(SystemColor.menu);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap()
+							.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
-							.addComponent(btnCancelar)
-							.addGap(22))
-						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
-					.addGap(54))
+							.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 622, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(22, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -111,7 +120,7 @@ public class CadastroPesquisaUI extends JInternalFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnSalvar))
-					.addContainerGap(182, Short.MAX_VALUE))
+					.addContainerGap(18, Short.MAX_VALUE))
 		);
 		
 		JLabel jlIdPesquisa = new JLabel("ID Pesquisa:");
@@ -160,7 +169,7 @@ public class CadastroPesquisaUI extends JInternalFrame {
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(jlIdPesquisa)
 									.addPreferredGap(ComponentPlacement.RELATED)
@@ -168,32 +177,35 @@ public class CadastroPesquisaUI extends JInternalFrame {
 									.addGap(18)
 									.addComponent(lbInstitutoPesquisa)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtInstitutoPesquisa, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(jlDataPesquisa)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtDataPesquisa, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
+									.addComponent(txtInstitutoPesquisa))
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(jlMediaIdade)
+									.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING, false)
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(jlMediaIdade)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(txtMediaIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(jlIdUf)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(txtIdUf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+											.addGap(18)
+											.addComponent(jbIdTipoPesquisa))
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(jlIdTipo)
+											.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(jlDataPesquisa)))
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtMediaIdade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(jlIdUf)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtIdUf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(jbIdTipoPesquisa)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(txtIdTipoPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(txtIdTipoPesquisa)
+										.addComponent(txtDataPesquisa, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)))))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(jlIdTipo)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtIdTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(56)
+							.addComponent(txtIdTipo, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(jlIdFormato)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtIdFormato, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(40, Short.MAX_VALUE))
+							.addComponent(txtIdFormato, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(26, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -203,9 +215,7 @@ public class CadastroPesquisaUI extends JInternalFrame {
 						.addComponent(jlIdPesquisa)
 						.addComponent(txtIdPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lbInstitutoPesquisa)
-						.addComponent(txtInstitutoPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(jlDataPesquisa)
-						.addComponent(txtDataPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtInstitutoPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(jlMediaIdade)
@@ -216,11 +226,13 @@ public class CadastroPesquisaUI extends JInternalFrame {
 						.addComponent(txtIdTipoPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jlIdTipo)
 						.addComponent(txtIdTipo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(jlIdFormato)
-						.addComponent(txtIdFormato, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(25, Short.MAX_VALUE))
+						.addComponent(txtIdFormato, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtDataPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(jlDataPesquisa)
+						.addComponent(jlIdTipo))
+					.addContainerGap(19, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);

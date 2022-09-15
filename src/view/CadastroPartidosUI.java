@@ -17,6 +17,8 @@ import javax.swing.border.TitledBorder;
 
 import Controller.PartidoController;
 import Model.Partido;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
 
 public class CadastroPartidosUI extends JInternalFrame {
 	private JTextField txtSiglaPartido;
@@ -43,14 +45,17 @@ public class CadastroPartidosUI extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public CadastroPartidosUI() {
+		getContentPane().setBackground(SystemColor.control);
 		setClosable(true);
 		setTitle("Cadastro de partidos");
 		setBounds(100, 100, 450, 222);
 		
 		JPanel jpCadastroPartidos = new JPanel();
+		jpCadastroPartidos.setBackground(SystemColor.control);
 		jpCadastroPartidos.setBorder(new TitledBorder(null, "Partido", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Fechar");
+		btnCancelar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\fechar.png"));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			dispose();
@@ -58,6 +63,7 @@ public class CadastroPartidosUI extends JInternalFrame {
 		});
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\salvar.png"));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -82,7 +88,7 @@ public class CadastroPartidosUI extends JInternalFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(jpCadastroPartidos, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)
 							.addComponent(btnCancelar)))
 					.addContainerGap())
@@ -92,7 +98,7 @@ public class CadastroPartidosUI extends JInternalFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(jpCadastroPartidos, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnSalvar))
@@ -119,35 +125,35 @@ public class CadastroPartidosUI extends JInternalFrame {
 				.addGroup(gl_jpCadastroPartidos.createSequentialGroup()
 					.addGroup(gl_jpCadastroPartidos.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_jpCadastroPartidos.createSequentialGroup()
+							.addGap(8)
 							.addComponent(jlIdPartido)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtIdPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_jpCadastroPartidos.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtIdPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(29)
 							.addComponent(jlSiglaPartido)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(txtSiglaPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_jpCadastroPartidos.createSequentialGroup()
+							.addContainerGap()
 							.addComponent(jlNomePartido)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtNomePartido, GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)))
-					.addContainerGap())
+							.addComponent(txtNomePartido, GroupLayout.PREFERRED_SIZE, 323, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(34, Short.MAX_VALUE))
 		);
 		gl_jpCadastroPartidos.setVerticalGroup(
 			gl_jpCadastroPartidos.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jpCadastroPartidos.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_jpCadastroPartidos.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jlSiglaPartido)
+						.addComponent(txtSiglaPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(jlIdPartido)
 						.addComponent(txtIdPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(18)
 					.addGroup(gl_jpCadastroPartidos.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jlSiglaPartido)
-						.addComponent(txtSiglaPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_jpCadastroPartidos.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jlNomePartido)
-						.addComponent(txtNomePartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(111, Short.MAX_VALUE))
+						.addComponent(txtNomePartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(jlNomePartido))
+					.addContainerGap(37, Short.MAX_VALUE))
 		);
 		jpCadastroPartidos.setLayout(gl_jpCadastroPartidos);
 		getContentPane().setLayout(groupLayout);

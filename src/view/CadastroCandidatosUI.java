@@ -20,6 +20,8 @@ import javax.swing.border.TitledBorder;
 import Controller.CandidatoController;
 import Model.Candidato;
 import Model.Partido;
+import java.awt.SystemColor;
+import javax.swing.ImageIcon;
 
 public class CadastroCandidatosUI extends JInternalFrame {
 	private JTextField txtNome;
@@ -48,14 +50,17 @@ public class CadastroCandidatosUI extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public CadastroCandidatosUI() {
+		getContentPane().setBackground(SystemColor.control);
 		setClosable(true);
 		setTitle("Cadastro de Candidatos");
-		setBounds(100, 100, 450, 334);
+		setBounds(100, 100, 450, 240);
 		
 		JPanel jpCadastroCandidatos = new JPanel();
+		jpCadastroCandidatos.setBackground(SystemColor.control);
 		jpCadastroCandidatos.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Candidato", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Fechar");
+		btnCancelar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\fechar.png"));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			dispose();
@@ -63,6 +68,7 @@ public class CadastroCandidatosUI extends JInternalFrame {
 		});
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\salvar.png"));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -96,24 +102,24 @@ public class CadastroCandidatosUI extends JInternalFrame {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(jpCadastroCandidatos, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+							.addGap(31)
 							.addComponent(btnCancelar)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(jpCadastroCandidatos, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+					.addComponent(jpCadastroCandidatos, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnSalvar))
-					.addContainerGap())
+					.addContainerGap(15, Short.MAX_VALUE))
 		);
 		
 		JLabel jlNomeCandidato = new JLabel("Nome:");
@@ -139,24 +145,25 @@ public class CadastroCandidatosUI extends JInternalFrame {
 		gl_jpCadastroCandidatos.setHorizontalGroup(
 			gl_jpCadastroCandidatos.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
+					.addGap(8)
 					.addGroup(gl_jpCadastroCandidatos.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
-							.addComponent(jlFichaLimpa)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtFichaLimpa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
-							.addComponent(jlNomeCandidato)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 311, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
 							.addComponent(jlIdCandidato)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(txtIdCandidato, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
-							.addGap(2)
-							.addComponent(jlIdPartido)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtIdPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_jpCadastroCandidatos.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
+								.addComponent(jlFichaLimpa)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(txtFichaLimpa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(jlIdPartido)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(txtIdPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGroup(Alignment.LEADING, gl_jpCadastroCandidatos.createSequentialGroup()
+								.addComponent(jlNomeCandidato)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, 303, GroupLayout.PREFERRED_SIZE))))
 					.addContainerGap(40, Short.MAX_VALUE))
 		);
 		gl_jpCadastroCandidatos.setVerticalGroup(
@@ -164,21 +171,19 @@ public class CadastroCandidatosUI extends JInternalFrame {
 				.addGroup(gl_jpCadastroCandidatos.createSequentialGroup()
 					.addGap(5)
 					.addGroup(gl_jpCadastroCandidatos.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jlIdCandidato)
-						.addComponent(txtIdCandidato, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtIdCandidato, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(jlIdCandidato))
 					.addGap(18)
 					.addGroup(gl_jpCadastroCandidatos.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jlNomeCandidato)
-						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(jlNomeCandidato))
 					.addGap(18)
 					.addGroup(gl_jpCadastroCandidatos.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtFichaLimpa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(jlFichaLimpa)
-						.addComponent(txtFichaLimpa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(17)
-					.addGroup(gl_jpCadastroCandidatos.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jlIdPartido)
-						.addComponent(txtIdPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(79, Short.MAX_VALUE))
+						.addComponent(txtIdPartido, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(jlIdPartido))
+					.addContainerGap(110, Short.MAX_VALUE))
 		);
 		jpCadastroCandidatos.setLayout(gl_jpCadastroCandidatos);
 		getContentPane().setLayout(groupLayout);

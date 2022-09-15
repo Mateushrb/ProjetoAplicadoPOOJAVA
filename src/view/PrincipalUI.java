@@ -12,6 +12,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
+import java.awt.Panel;
+import javax.swing.JDesktopPane;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class PrincipalUI extends JFrame {
 
@@ -45,6 +51,7 @@ public class PrincipalUI extends JFrame {
 		setJMenuBar(jbPrincipal);
 		
 		JMenu jmCadastros = new JMenu("Cadastros");
+		jmCadastros.setBackground(new Color(192, 192, 192));
 		jbPrincipal.add(jmCadastros);
 		
 		JMenuItem jmiCandidatos = new JMenuItem("Candidatos");
@@ -102,19 +109,19 @@ public class PrincipalUI extends JFrame {
 		JMenuItem jmiRegistrarPesquisas = new JMenuItem("Registrar Pesquisas");
 		jmPesquisa.add(jmiRegistrarPesquisas);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.textHighlight);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 424, Short.MAX_VALUE)
+				.addGap(0, 937, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 251, Short.MAX_VALUE)
+				.addGap(0, 498, Short.MAX_VALUE)
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
-
 }
