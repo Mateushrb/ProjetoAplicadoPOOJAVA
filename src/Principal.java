@@ -1,4 +1,10 @@
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import Controller.CandidatoController;
 import Controller.PartidoController;
@@ -7,9 +13,10 @@ import Model.Candidato;
 import Model.CandidatoXPesquisa;
 import Model.Partido;
 import Model.Pesquisa;
+import util.ConnectionUtil;
 
 public class Principal {
-
+	private static Connection con = ConnectionUtil.getConnection();
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Partido Esquerda = new Partido(13, "PT", "Partido dos Trabalhadores");
@@ -19,8 +26,8 @@ public class Principal {
 		Candidato Bolsonaro = new Candidato(Direita, 17, "Sim", "Jair Bolsonaro");
 		
 		LocalDate dataAgora = LocalDate.now();
-		
-		Pesquisa pesquisa1IBGE = new Pesquisa(1503, "IBGE", dataAgora);
+		System.out.println(dataAgora);
+		Pesquisa pesquisa1IBGE = new Pesquisa(1503, "IBGE", dataAgora, 0, 1, 1, 1, 1);
 		
 		
 		CandidatoXPesquisa cand1 = new CandidatoXPesquisa(71826, pesquisa1IBGE, Lula);
@@ -44,14 +51,55 @@ public class Principal {
 		}
 		*/
 		
-		for (Partido p : partidoController.listar()) {
-			System.out.println(p.toString());
+//		for (Partido p : partidoController.listar()) {
+//			System.out.println(p.toString());
+//		}
+//		for (Candidato c : candidatoController.listar()) {
+//			System.out.println(c.toString());
+//		}
+//		for (Pesquisa p : pesquisaController.listar()) {
+//			System.out.println(p.toString());
+//		}
+		
+		List<Candidato> listaCandidatos = new ArrayList<>();
+		try {
+			String sql = "SELECT * FROM candidato";
+			
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				Partido p1 = new Partido();
+				p1.setIdPartido(rs.getInt("partido_idpartido"));
+				
+				Candidato c1 = new Candidato();
+				c1.setIdCandidato(rs.getInt("idcandidato"));
+				c1.setFichaLimpa(rs.getString("fichalimpa"));
+				c1.setNome(rs.getString("nome"));
+				c1.setPartido(p1);
+				
+				listaCandidatos.add(c1);
+				
+			}
+			
+			String sql2 = "SELECT * FROM partido";
+			ResultSet rs2 = stmt.executeQuery(sql2);
+			while (rs2.next()) {
+				for (Candidato i : listaCandidatos) {
+					if (i.getPartido().getIdPartido() == rs2.getInt("idpartido")) {
+						i.getPartido().setNomePartido(rs2.getString("nomepartido"));
+						i.getPartido().setSigla(rs2.getString("sigla"));
+						
+					}
+				}
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		for (Candidato c : candidatoController.listar()) {
-			System.out.println(c.toString());
-		}
-		for (Pesquisa p : pesquisaController.listar()) {
-			System.out.println(p.toString());
+		for (Candidato i : listaCandidatos) {
+			System.out.println(i.toString());
 		}
 		
 	}
