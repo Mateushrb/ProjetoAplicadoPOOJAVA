@@ -15,7 +15,7 @@ import util.ConnectionUtil;
 public class CandidatoDao {
 	
 	private static CandidatoDao instance;
-	//private List<Candidato> listaCandidato = new ArrayList<>();
+	private List<Candidato> listaCandidato = new ArrayList<>();
 	private Connection con = ConnectionUtil.getConnection();
 	
 	/*
@@ -45,7 +45,7 @@ public class CandidatoDao {
 	
 	public void atualizar(Candidato candidato) {
 		try {
-			String sql = "UPDATE candidato SET fichalimpa = ?, nome = ? WHERE id = ?";
+			String sql = "UPDATE candidato SET fichalimpa = ?, nome = ? WHERE idcandidato = ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, candidato.getFichaLimpa());
 			pstmt.setString(2, candidato.getNome());
@@ -58,7 +58,7 @@ public class CandidatoDao {
 	
 	public void excluir(int idCandidato) {
 		try {
-			String sql = "DELETE FROM candidato WHERE id = ?";
+			String sql = "DELETE FROM candidato WHERE idcandidato = ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, idCandidato);
 			pstmt.executeUpdate();
@@ -71,17 +71,13 @@ public class CandidatoDao {
 		List<Candidato> listaCandidatos = new ArrayList<>();
 		try {
 			String sql = "SELECT * FROM candidato";
-			String sql2 = "SELECT * FROM partido";
 			
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-			ResultSet rs2 = stmt.executeQuery(sql2);
 			
 			while (rs.next()) {
 				Partido p1 = new Partido();
-				p1.setIdPartido(rs2.getInt("idpartido"));
-				p1.setSigla(rs2.getString("sigla"));
-				p1.setNomePartido(rs2.getString("nomepartido"));
+				p1.setIdPartido(rs.getInt("partido_idpartido"));
 				
 				Candidato c1 = new Candidato();
 				c1.setIdCandidato(rs.getInt("idcandidato"));
@@ -92,6 +88,20 @@ public class CandidatoDao {
 				listaCandidatos.add(c1);
 				
 			}
+			
+			String sql2 = "SELECT * FROM partido";
+			ResultSet rs2 = stmt.executeQuery(sql2);
+			while (rs2.next()) {
+				for (Candidato i : listaCandidatos) {
+					if (i.getPartido().getIdPartido() == rs2.getInt("idpartido")) {
+						i.getPartido().setNomePartido(rs2.getString("nomepartido"));
+						i.getPartido().setSigla(rs2.getString("sigla"));
+						
+					}
+				}
+			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
