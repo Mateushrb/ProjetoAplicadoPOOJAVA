@@ -8,7 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import Model.Candidato;
 
 public class CandidatoTableModel extends AbstractTableModel {
-
+	
 	private static final long serialVersionUID = 1L;
 	private static final int COL_NOME = 0;
 	private static final int COL_PARTIDO = 1;
@@ -28,28 +28,28 @@ public class CandidatoTableModel extends AbstractTableModel {
 	}
 	
 	public String getColumnName(int column) {
-		if (column == COL_NOME) return "Candidato";
-		if (column == COL_PARTIDO) return "Partido";
+		if (column == COL_NOME) return "Nome do Candidato";
+		if (column == COL_PARTIDO) return "Nome do Partido";
 		return "";
 	}
 	
 	public Object getValueAt(int row, int column) {
 		Candidato candidato = valores.get(row);
-		if (column == COL_NOME)
+		if (column == COL_NOME) 
 			return candidato.getNome();
-			else
-				if (column == COL_PARTIDO)
-					return candidato.getPartido();
+		else
+			if (column == COL_PARTIDO) 
+				return candidato.getPartido().getNomePartido();
 		return "";
 	}
 	
-	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		Candidato candidato = valores.get(columnIndex);
-		if (columnIndex == COL_PARTIDO)
-			candidato.setPartido(aValue.toString());
+	public void setValueAt(Candidato aValue, int rowIndex, int columnIndex) {
+		Candidato candidato = valores.get(rowIndex);
+		if (columnIndex == COL_NOME)
+			candidato.setNome(aValue.getNome());
 		else
 			if (columnIndex == COL_PARTIDO)
-				candidato.setPartido(aValue.toString());
+				candidato.setPartido(aValue.getPartido());
 	}
 	
 	public Class<?> getColumnClass(int columnIndex) {
@@ -63,16 +63,4 @@ public class CandidatoTableModel extends AbstractTableModel {
 	public Candidato get(int row) {
 		return valores.get(row);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
