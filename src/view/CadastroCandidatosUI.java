@@ -26,6 +26,7 @@ public class CadastroCandidatosUI extends JInternalFrame {
 	private JTextField txtFichaLimpa;
 	private JTextField txtIdCandidato;
 	private JTextField txtIdPartido;
+	private Candidato candidato;
 
 	/**
 	 * Launch the application.
@@ -55,25 +56,38 @@ public class CadastroCandidatosUI extends JInternalFrame {
 		jpCadastroCandidatos.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Candidato", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			dispose();
+			}
+		});
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Candidato candidato = new Candidato();
-					Partido partido = new Partido();
-					partido.setIdPartido(Integer.parseInt(txtIdPartido.getText()));
-					candidato.setPartido(partido);
-					candidato.setIdCandidato(Integer.parseInt(txtIdCandidato.getText()));
-					candidato.setNome(txtNome.getText());
-					candidato.setFichaLimpa(txtFichaLimpa.getText());
-					
-					
-					new CandidatoController().salvar(candidato);
-					JOptionPane.showMessageDialog(null,  "Candidato salvo com sucesso!");
+					if (candidato != null && candidato.getIdCandidato() > 0) {
+						candidato.getPartido().setIdPartido(Integer.parseInt(txtIdPartido.getText()));
+						candidato.setIdCandidato(Integer.parseInt(txtIdCandidato.getText()));
+						candidato.setNome(txtNome.getText());
+						candidato.setFichaLimpa(txtFichaLimpa.getText());
+						new CandidatoController().atualizar(candidato);
+						JOptionPane.showMessageDialog(null, "Candidato atualizado com sucesso!");
+					} else {
+						Candidato candidato = new Candidato();
+						Partido partido = new Partido();
+						partido.setIdPartido(Integer.parseInt(txtIdPartido.getText()));
+						candidato.setPartido(partido);
+						candidato.setIdCandidato(Integer.parseInt(txtIdCandidato.getText()));
+						candidato.setNome(txtNome.getText());
+						candidato.setFichaLimpa(txtFichaLimpa.getText());
+						
+						new CandidatoController().salvar(candidato);
+						JOptionPane.showMessageDialog(null, "Candidato salvo com sucesso!");
+					}
 					dispose();
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(null,  "Erro ao salvar candidato!");
+					JOptionPane.showMessageDialog(null, "Erro ao salvar candidato!");
 				}
 			}
 		});
@@ -169,5 +183,19 @@ public class CadastroCandidatosUI extends JInternalFrame {
 		jpCadastroCandidatos.setLayout(gl_jpCadastroCandidatos);
 		getContentPane().setLayout(groupLayout);
 
+	}
+	
+	public void setCandidatoEdicao(Candidato candidato) {
+		this.candidato = candidato;
+		preencheFormulario();
+	}
+	
+	private void preencheFormulario() {
+		if (candidato != null) {
+			txtIdCandidato.setText(Integer.toString(candidato.getIdCandidato()));
+			txtNome.setText(candidato.getNome());
+			txtFichaLimpa.setText(candidato.getFichaLimpa());
+			txtIdPartido.setText(Integer.toString(candidato.getPartido().getIdPartido()));
+		}
 	}
 }
