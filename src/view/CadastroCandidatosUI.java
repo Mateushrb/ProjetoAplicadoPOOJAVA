@@ -60,7 +60,7 @@ public class CadastroCandidatosUI extends JInternalFrame {
 		jpCadastroCandidatos.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Candidato", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
 		JButton btnCancelar = new JButton("Fechar");
-		btnCancelar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\fechar.png"));
+		btnCancelar.setIcon(new ImageIcon(getClass().getResource(".../../../fechar.png").getPath()));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			dispose();
@@ -68,7 +68,7 @@ public class CadastroCandidatosUI extends JInternalFrame {
 		});
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\salvar.png"));
+		btnSalvar.setIcon(new ImageIcon(getClass().getResource("../.../../salvar.png").getPath()));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -105,7 +105,7 @@ public class CadastroCandidatosUI extends JInternalFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(jpCadastroCandidatos, GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
 							.addGap(31)
 							.addComponent(btnCancelar)))
 					.addContainerGap())
@@ -119,7 +119,7 @@ public class CadastroCandidatosUI extends JInternalFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnCancelar)
 						.addComponent(btnSalvar))
-					.addContainerGap(15, Short.MAX_VALUE))
+					.addContainerGap(13, Short.MAX_VALUE))
 		);
 		
 		JLabel jlNomeCandidato = new JLabel("Nome:");

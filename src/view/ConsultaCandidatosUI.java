@@ -1,24 +1,24 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.TitledBorder;
 
 import Controller.CandidatoController;
 import Model.Candidato;
 import view.tables.CandidatoTableModel;
-import javax.swing.ImageIcon;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.TitledBorder;
-import java.awt.SystemColor;
 
 public class ConsultaCandidatosUI extends JInternalFrame {
 	private JTable jtCandidatos;
@@ -49,7 +49,7 @@ public class ConsultaCandidatosUI extends JInternalFrame {
 		setBounds(100, 100, 631, 270);
 		
 		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\erro.png"));
+		btnExcluir.setIcon(new ImageIcon(getClass().getResource(".../../../excluir.png").getPath()));
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Candidato candidato = new CandidatoTableModel(new CandidatoController().listar()).get(jtCandidatos.getSelectedRow());
@@ -64,7 +64,7 @@ public class ConsultaCandidatosUI extends JInternalFrame {
 		});
 		
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\editar.png"));
+		btnEditar.setIcon(new ImageIcon(getClass().getResource(".../../../editar.png").getPath()));
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Candidato candidato = new CandidatoTableModel(new CandidatoController().listar()).get(jtCandidatos.getSelectedRow());
@@ -76,7 +76,7 @@ public class ConsultaCandidatosUI extends JInternalFrame {
 		});
 		
 		JButton btnCancelar = new JButton("Fechar");
-		btnCancelar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\excluir.png"));
+		btnCancelar.setIcon(new ImageIcon(getClass().getResource(".../../../fechar.png").getPath()));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -85,9 +85,8 @@ public class ConsultaCandidatosUI extends JInternalFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
 		JButton btnAtualizar = new JButton("Atualizar Dados");
-		btnAtualizar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\atualizar.png"));
+		btnAtualizar.setIcon(new ImageIcon(getClass().getResource(".../../../atualizar.png").getPath()));
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jtCandidatos.setModel(new CandidatoTableModel(new CandidatoController().listar()));

@@ -55,7 +55,7 @@ public class CadastroPartidosUI extends JInternalFrame {
 		jpCadastroPartidos.setBorder(new TitledBorder(null, "Partido", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
 		JButton btnCancelar = new JButton("Fechar");
-		btnCancelar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\fechar.png"));
+		btnCancelar.setIcon(new ImageIcon(getClass().getResource("../.../../fechar.png").getPath()));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			dispose();
@@ -63,7 +63,7 @@ public class CadastroPartidosUI extends JInternalFrame {
 		});
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\salvar.png"));
+		btnSalvar.setIcon(new ImageIcon(getClass().getResource("../.../../salvar.png").getPath()));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {

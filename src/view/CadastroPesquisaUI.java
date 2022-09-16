@@ -58,7 +58,7 @@ public class CadastroPesquisaUI extends JInternalFrame {
 		setBounds(100, 100, 670, 226);
 		
 		JButton btnCancelar = new JButton("Fechar");
-		btnCancelar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\fechar.png"));
+		btnCancelar.setIcon(new ImageIcon(getClass().getResource("../.../../fechar.png").getPath()));
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			dispose();
@@ -66,7 +66,7 @@ public class CadastroPesquisaUI extends JInternalFrame {
 		});
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\devbarbosa\\Downloads\\salvar.png"));
+		btnSalvar.setIcon(new ImageIcon(getClass().getResource("../.../../salvar.png").getPath()));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
