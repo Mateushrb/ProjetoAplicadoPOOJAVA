@@ -12,10 +12,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
-import javax.swing.JEditorPane;
-import java.awt.Panel;
-import javax.swing.JDesktopPane;
 import java.awt.Color;
 import java.awt.SystemColor;
 
@@ -98,6 +94,13 @@ public class PrincipalUI extends JFrame {
 		jmConsultas.add(jmiConsultaCandidatos);
 		
 		JMenuItem jmiConsultaPartidos = new JMenuItem("Partidos");
+		jmiConsultaPartidos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConsultaPartidosUI consultaPartUI = new ConsultaPartidosUI();
+				consultaPartUI.setVisible(true);
+				contentPane.add(consultaPartUI, 0);
+			}
+		});
 		jmConsultas.add(jmiConsultaPartidos);
 		
 		JMenuItem jmiCandidatoXPesquisa = new JMenuItem("Candidato/Pesquisa");

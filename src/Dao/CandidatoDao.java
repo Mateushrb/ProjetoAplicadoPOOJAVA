@@ -15,7 +15,6 @@ import util.ConnectionUtil;
 public class CandidatoDao {
 	
 	private static CandidatoDao instance;
-	private List<Candidato> listaCandidato = new ArrayList<>();
 	private Connection con = ConnectionUtil.getConnection();
 	
 	/*

@@ -14,7 +14,6 @@ import util.ConnectionUtil;
 public class PartidoDao {
 	
 	private static PartidoDao instance;
-	private List<Partido> listaPartido = new ArrayList<>();
 	private Connection con = ConnectionUtil.getConnection();
 	
 	/*
@@ -43,11 +42,12 @@ public class PartidoDao {
 	
 	public void atualizar(Partido partido) {
 		try {
-			String sql = "UPDATE partido SET sigla = ?, nomepartido = ? WHERE id = ?";
+			String sql = "UPDATE partido SET sigla = ?, nomepartido = ? WHERE idpartido = ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, partido.getSigla());
 			pstmt.setString(2, partido.getNomePartido());
-			pstmt.executeUpdate();
+			pstmt.setInt(3, partido.getIdPartido());
+			pstmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -55,7 +55,7 @@ public class PartidoDao {
 	
 	public void excluir(int idPartido) {
 		try {
-			String sql = "DELETE FROM partido WHERE id = ?";
+			String sql = "DELETE FROM partido WHERE idpartido = ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, idPartido);
 			pstmt.executeUpdate();
@@ -80,7 +80,7 @@ public class PartidoDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return listaPartido;
+		return listaPartidos;
 	}
 }
 

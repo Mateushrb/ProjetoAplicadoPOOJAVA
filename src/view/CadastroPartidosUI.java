@@ -1,11 +1,13 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -17,13 +19,12 @@ import javax.swing.border.TitledBorder;
 
 import Controller.PartidoController;
 import Model.Partido;
-import java.awt.SystemColor;
-import javax.swing.ImageIcon;
 
 public class CadastroPartidosUI extends JInternalFrame {
 	private JTextField txtSiglaPartido;
 	private JTextField txtNomePartido;
 	private JTextField txtIdPartido;
+	private Partido partido;
 
 	/**
 	 * Launch the application.
@@ -67,13 +68,22 @@ public class CadastroPartidosUI extends JInternalFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Partido partido = new Partido();
-					partido.setIdPartido(Integer.parseInt(txtIdPartido.getText()));
-					partido.setSigla(txtSiglaPartido.getText());
-					partido.setNomePartido(txtNomePartido.getText());
-					
-					new PartidoController().salvar(partido);
-					JOptionPane.showMessageDialog(null, "Partido salvo com sucesso!");
+					if (partido != null && partido.getIdPartido() > 0) {
+						partido.setIdPartido(Integer.parseInt(txtIdPartido.getText()));
+						partido.setSigla(txtSiglaPartido.getText());
+						partido.setNomePartido(txtNomePartido.getText());
+						new PartidoController().atualizar(partido);
+						JOptionPane.showMessageDialog(null, "Partido atualizado com sucesso!");
+						
+					} else {
+						Partido partido = new Partido();
+						partido.setIdPartido(Integer.parseInt(txtIdPartido.getText()));
+						partido.setSigla(txtSiglaPartido.getText());
+						partido.setNomePartido(txtNomePartido.getText());
+						
+						new PartidoController().salvar(partido);
+						JOptionPane.showMessageDialog(null, "Partido salvo com sucesso!");
+					}
 					dispose();
 				} catch(Exception ex) {
 					JOptionPane.showMessageDialog(null, "Erro ao salvar partido!");
@@ -158,5 +168,18 @@ public class CadastroPartidosUI extends JInternalFrame {
 		jpCadastroPartidos.setLayout(gl_jpCadastroPartidos);
 		getContentPane().setLayout(groupLayout);
 
+	}
+	
+	public void setPartidoEdicao(Partido partido) {
+		this.partido = partido;
+		preencheFormulario();
+	}
+	
+	private void preencheFormulario() {
+		if (partido != null) {
+			txtIdPartido.setText(Integer.toString(partido.getIdPartido()));
+			txtSiglaPartido.setText(partido.getSigla());
+			txtNomePartido.setText(partido.getNomePartido());
+		}
 	}
 }
